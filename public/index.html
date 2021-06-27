@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Artistic</title>
+<link rel="stylesheet" type="text/css" href="/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "./build/three.module.js",
+            "three/examples/jsm/controls/OrbitControls":"./jsm/controls/OrbitControls.js",
+            "three/examples/jsm/libs/stats.module":"./jsm/libs/stats.module.js"
+          }
+        }
+    </script>
+</head>
+
+<body>
+    <script type="x-shader/x-vertex" id="vertexshader">
+
+        attribute float size;
+        attribute vec3 customColor;
+        varying vec3 vColor;
+
+        void main() {
+
+          vColor = customColor;
+          vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+          gl_PointSize = size * ( 300.0 / -mvPosition.z );
+          gl_Position = projectionMatrix * mvPosition;
+
+        }
+
+      </script>
+      <script type="x-shader/x-fragment" id="fragmentshader">
+
+       uniform vec3 color;
+       uniform sampler2D pointTexture;
+
+       varying vec3 vColor;
+
+       void main() {
+
+         gl_FragColor = vec4( color * vColor, 1.0 );
+         gl_FragColor = gl_FragColor * texture2D( pointTexture, gl_PointCoord );
+
+       }
+      </script>
+
+      <div id="magic"></div>
+      <div class="playground">
+
+      <header>
+      <div class="main">
+          <ul>
+              <li class="active" ><a href="index.html" style="font-size: 25px;">Home</a></li>
+              <li><a href="gallery.html" style="font-size: 25px;">Gallery</a></li>
+              <li><a href="contactme.html" style="font-size: 25px;">Contact me</a></li>
+              <li><a href="aboutme.html" style="font-size: 25px;">About me</a></li>
+              <li><a href="https://www.instagram.com/artistically_adept" style="font-size: 25px;">Instagram</a></li>
+          </ul>
+      </div>
+      <div class="bottomPosition" style="position: relative; bottom: -700px;">
+          <h1 class="special">Artistically Adept<br><span class="minText">Creative Artwork by Sadia Afreen</span><div><span class="minText">Feel free to play with art on this site</span></div></h1>
+      </div>
+    </div>
+    <script type="module" src="client.js"></script>
+</body>
+
+</html>
