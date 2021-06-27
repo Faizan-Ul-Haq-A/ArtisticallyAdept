@@ -1,6 +1,6 @@
-import * as THREE from 'three';
-import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
-import Stats from 'three/examples/jsm/libs/stats.module';
+import * as THREE from 'https://unpkg.com/three/build/three.module.js';
+import {OrbitControls} from 'https://unpkg.com/three/examples/jsm/controls/OrbitControls';
+import Stats from 'https://unpkg.com/three/examples/jsm/libs/stats.module';
 
 const scene = new THREE.Scene();
 const preload = () => {
